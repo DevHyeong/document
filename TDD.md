@@ -12,4 +12,4 @@ https://medium.com/@chanhyeonglee/mock-%EA%B0%9D%EC%B2%B4-%EB%82%A8%EC%9A%A9%EC%
 https://techblog.woowahan.com/2572/
 
 - 테스트 주도 시작하기 개발하기(저자 최범균님) 요약본
-https://incheol-jung.gitbook.io/docs/study/undefined-3/chap-02.-tdd
+- https://incheol-jung.gitbook.io/docs/study/undefined-3/chap-02.-tdd
