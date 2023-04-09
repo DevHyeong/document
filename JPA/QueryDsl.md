@@ -18,16 +18,63 @@ JPQL을 편하게 작성하도록 도와주는 빌더 클래스 모음. 비표�
 build.gradle
 
 ```
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+	}
+}
 
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.7'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
 
+group = 'kr.15gg'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
+repositories {
+	mavenCentral()
+}
 
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'com.querydsl', name: 'querydsl-jpa', version: queryDslVersion
+	implementation group: 'com.querydsl', name: 'querydsl-apt', version: queryDslVersion
+	
+  annotationProcessor 'com.querydsl:querydsl-apt:${queryDslVersion}:jpa'
+	annotationProcessor "javax.persistence:javax.persistence-api"
+	annotationProcessor "javax.annotation:javax.annotation-api"
 
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
+		}
+	}
+}
 ```
 
+QuerydslConfig.java
+```
+@Configuration
+public class QuerydslConfig {
 
+    @PersistenceContext
+    private EntityManager entityManager;
 
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
+    }
+}
+```
 
 
 
