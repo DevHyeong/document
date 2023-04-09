@@ -76,6 +76,9 @@ public class QuerydslConfig {
 }
 ```
 
+## 사용법
+fetchJoin() multiple join시는 지원안함
+
 
 
 
