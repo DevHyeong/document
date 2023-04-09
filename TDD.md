@@ -13,3 +13,6 @@ https://techblog.woowahan.com/2572/
 
 - 테스트 주도 시작하기 개발하기(저자 최범균님) 요약본
 - https://incheol-jung.gitbook.io/docs/study/undefined-3/chap-02.-tdd
+
+
+- 테스트 코드 짜면서 원했던 환경?
