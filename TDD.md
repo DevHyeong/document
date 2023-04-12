@@ -1,18 +1,21 @@
 # TDD에 대한 내용들
 
 
+### Mock 객체 남용은 테스트 코드를 망친다
+  - https://medium.com/@chanhyeonglee/mock-%EA%B0%9D%EC%B2%B4-%EB%82%A8%EC%9A%A9%EC%9D%80-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%A7%9D%EC%B9%9C%EB%8B%A4-f38129e5d40a
 
+### 성능 테스트
+  - https://techblog.woowahan.com/2572/
 
-- Mock 객체 남용은 테스트 코드를 망친다
+### 테스트 주도 시작하기 개발하기(저자 최범균님) 요약본
+  - https://incheol-jung.gitbook.io/docs/study/undefined-3/chap-02.-tdd
 
-https://medium.com/@chanhyeonglee/mock-%EA%B0%9D%EC%B2%B4-%EB%82%A8%EC%9A%A9%EC%9D%80-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%A7%9D%EC%B9%9C%EB%8B%A4-f38129e5d40a
-
-- 성능 테스트
-
-https://techblog.woowahan.com/2572/
-
-- 테스트 주도 시작하기 개발하기(저자 최범균님) 요약본
-- https://incheol-jung.gitbook.io/docs/study/undefined-3/chap-02.-tdd
-
-
-- 테스트 코드 짜면서 원했던 환경?
+### TDD 개발을 하면서 들었던 생각들
+  - 작성된 테스트케이스가 정말 신뢰할 수 있는가?
+    - 코드 리펙토링을 하면서 기존 코드가 TDD 개발을 하지 않았던터라 테스트 케이스를 만들면서 리펙토링을 진행하였다. 유틸 클래스(리펙토링할 대상)의 메소드 단위로 리펙토링과 테스트 케이스를 작성하면서 정말 이 테스트를 통과하면 기능에 문제가 없이 리펙토링이 잘된건가 하는 의문이 들었다. 
+  - 왜 신뢰가 되지 않는가?
+    - TDD 개발이 익숙지 않아서 그런것같다.
+  - 해당 테스트 케이스의 관심사는 한가지여야 한다.(메소드 단위)
+    - SQL 쿼리를 통해 가져온 데이터를 자바에서 제대로 파싱을 하고 있는지에 대한 테스트가 필요했다. 하지만 이 내용을 들었을 때 두가지를 생각할 수 있다.
+    - SQL 쿼리가 개발자가 원하는 정확한 데이터를 가져오는가? 데이트를 활용하여 제대로 파싱하는가?
+    - 하나의 테스트 케이스를 통해 두가지를 다 확인해볼수는 없으며 
