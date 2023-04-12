@@ -19,3 +19,15 @@
 
 ## 이력서 작성 꿀팁
 https://wonny.space/writing/work/engineer-resume
+
+
+## 리펙토링 중 고민들
+- 같은 로직안에서 어떤 경우에는 a.merge를 실행시켜야하고, 어떤 경우에는 a.sum을 실행시켜야 하는 경우
+  ```
+  A b = new A();
+  for(A a : list){
+    if(a.equals(b){
+      a.merge(b); // or a.sum(b);
+    }
+  }
+  ```
