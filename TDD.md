@@ -19,3 +19,20 @@
     - SQL 쿼리를 통해 가져온 데이터를 자바에서 제대로 파싱을 하고 있는지에 대한 테스트가 필요했다. 하지만 이 내용을 들었을 때 두가지를 생각할 수 있다.
     - SQL 쿼리가 개발자가 원하는 정확한 데이터를 가져오는가? 데이트를 활용하여 제대로 파싱하는가?
     - 하나의 테스트 케이스를 통해 두가지를 다 확인해볼수는 없으며 
+
+### mockMvc model test시 구조(통합테스트)
+- 웹 페이지를 불러오는 방식 중에 SSR(Servier Side Rendering)은 spring의 Model에 데이터를 담아 view에 넘기게 된다.
+- 이 때 Model에 담긴 객체(json형태)의 값을 테스트하고 싶을 때 아래의 코드를 사용하면 된다.
+```
+  MvcResult mvcResult = mockMvc.perform(get("url path")
+			.servletPath("url path")
+			.sessionAttr("session", session))
+			.andExpect(status().isOk())
+			.andExpect(model().attributeExists("model명"))
+			.andReturn();
+		
+  Map<String, Object> map = mvcResult.getModelAndView().getModel();
+  Object object = map.get("model명");
+  A a = new ObjectMapper().convertValue(object, A.class);
+  
+```
