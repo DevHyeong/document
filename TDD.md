@@ -37,5 +37,5 @@
   
 ```
 
-### spring legacy proect에 h2적용
+### spring legacy proect에 테스트시 h2적용
 
