@@ -36,3 +36,6 @@
   A a = new ObjectMapper().convertValue(object, A.class);
   
 ```
+
+### spring legacy proect에 h2적용
+
