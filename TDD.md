@@ -38,4 +38,4 @@
 ```
 
 ### spring legacy proect에 테스트시 h2적용
-
+- ORACLE 함수적용 https://github.com/h2database/h2database/issues/1161 
