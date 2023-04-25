@@ -39,3 +39,4 @@
 
 ### spring legacy proect에 테스트시 h2적용
 - ORACLE 함수적용 https://github.com/h2database/h2database/issues/1161 
+- JPA가 아닌 mybatis로 특정 데이터베이스에 의존적인 쿼리를 만들었을 경우 h2적용시 지원하지 않는 문법이 존재하여 힘든 경우가 있다.
