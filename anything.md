@@ -37,3 +37,10 @@ https://wonny.space/writing/work/engineer-resume
 
 ## 책추천
 https://yozm.wishket.com/magazine/detail/1892/
+
+## 코드에 대한 분석
+- 로직(메서드 기준)이 어떤 내용을 담고있는지 간단하고 명확하게 정리하여 기술
+- 해당 로직은 테스트 코드를 작성하는데 용이한가에 대한 생각
+
+
+
