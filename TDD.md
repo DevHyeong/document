@@ -44,3 +44,11 @@
 ### spring legacy proect에 테스트시 h2적용
 - ORACLE 함수적용 https://github.com/h2database/h2database/issues/1161 
 - JPA가 아닌 mybatis로 특정 데이터베이스에 의존적인 쿼리를 만들었을 경우 h2적용시 지원하지 않는 문법이 존재하여 힘든 경우가 있다.
+
+### 테스트 코드에서 내부 구현 검증 피하기
+- 비지니스로직 안에서 일어나는 내부 구현에 대한 검증은 피하고 검증 단위는 비지니스 기능 단위로 하는 것이 좋다. 
+- 이유는 비지니스로직 안에 리팩토링이 일어날 경우 내부구현을 검증하기 위한 테스트 코드를 수정할수밖에 없기 때문
+- 내부 구현예시: private으로 선언된 함수나 메소드, repository에 대한 검증 등
+- https://jojoldu.tistory.com/614
+
+
