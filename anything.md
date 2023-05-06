@@ -42,5 +42,6 @@ https://yozm.wishket.com/magazine/detail/1892/
 - 로직(메서드 기준)이 어떤 내용을 담고있는지 간단하고 명확하게 정리하여 기술
 - 해당 로직은 테스트 코드를 작성하는데 용이한가에 대한 생각
 
-
+## DDD 애그릿게이트
+- https://medium.com/@SlackBeck/%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9E%87-%ED%95%98%EB%82%98%EC%97%90-%EB%A6%AC%ED%8C%8C%EC%A7%80%ED%86%A0%EB%A6%AC-%ED%95%98%EB%82%98-f97a69662f63
 
