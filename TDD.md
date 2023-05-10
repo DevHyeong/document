@@ -51,4 +51,8 @@
 - 내부 구현예시: private으로 선언된 함수나 메소드, repository에 대한 검증 등
 - https://jojoldu.tistory.com/614
 
+### 테스트 커버리지
+- https://velog.io/@lxxjn0/%EC%BD%94%EB%93%9C-%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC-%EC%A0%81%EC%9A%A9%EA%B8%B0-1%ED%8E%B8-%EC%BD%94%EB%93%9C-%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80Code-Coverage%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94
+- https://www.youtube.com/watch?v=jdlBu2vFv58
+
 
