@@ -55,4 +55,15 @@
 - https://velog.io/@lxxjn0/%EC%BD%94%EB%93%9C-%EB%B6%84%EC%84%9D-%EB%8F%84%EA%B5%AC-%EC%A0%81%EC%9A%A9%EA%B8%B0-1%ED%8E%B8-%EC%BD%94%EB%93%9C-%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80Code-Coverage%EA%B0%80-%EB%AD%94%EA%B0%80%EC%9A%94
 - https://www.youtube.com/watch?v=jdlBu2vFv58
 
+### FIRST 원칙
+- 좋은 테스트 코드는 다음과 같은 특징을 가진다.
+	- Fast : 테스트는 빠르게 동작하여 자주 돌릴 수 있어야 한다.
+	- Independent : 각각의 테스트는 독립적이며 서로 의존해서는 안된다
+	- Repeatable : 어느 환경에서도 반복 가능해야 한다.
+	- Self-Validating : 테스트는 성공 또는 실패로 bool 값으로 결과를 내어 자체적으로 검증되어야 한다.
+	- Timely : 테스트는 적시에 즉 테스트하려는 실제 코드를 구현하기 직전에 구현해야 한다.
+
+
+
+
 
