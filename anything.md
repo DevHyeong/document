@@ -49,3 +49,6 @@ https://yozm.wishket.com/magazine/detail/1892/
 ## DAO vs Repository 차이점
 - https://bperhaps.tistory.com/entry/Repository%EC%99%80-Dao%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90
 
+## 사용자 행동로그
+- https://medium.com/@connect2yh/%EC%82%AC%EC%9A%A9%EC%9E%90-%ED%96%89%EB%8F%99-%EB%A1%9C%EA%B7%B8-%ED%8C%8C%EC%A2%85%EB%B6%80%ED%84%B0-%EC%88%98%ED%99%95%EA%B9%8C%EC%A7%80-%EC%9E%98-%EC%8C%93%EA%B8%B0-1%ED%8E%B8-9733422dd00d
+
