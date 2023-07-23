@@ -56,3 +56,5 @@ https://yozm.wishket.com/magazine/detail/1892/
 ## IaaS, PaaS, SaaS 의미와 차이점
 - https://blog.naver.com/gitple/221744064248
 
+## 사용자 정의 예외는 꼭 정의해야될까? (표준예외로 대체할 수 없을까?)
+- https://tecoble.techcourse.co.kr/post/2020-08-17-custom-exception/
