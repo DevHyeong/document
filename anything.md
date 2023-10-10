@@ -58,3 +58,30 @@ https://yozm.wishket.com/magazine/detail/1892/
 
 ## 사용자 정의 예외는 꼭 정의해야될까? (표준예외로 대체할 수 없을까?)
 - https://tecoble.techcourse.co.kr/post/2020-08-17-custom-exception/
+
+
+
+
+## LocalDateTime 활용(Mybatis, application/json)
+
+### 문제 상황
+
+- varchar2 값으로 저장된 dateTime 값을 읽어와 Java 8의 LocalDateTime 타입의 변수에 담아야 하는 상황
+- LocalDateTime 타입의 변수에 저장된 데이터를 json 형태로 API 통신이 되어야 하는 상황
+
+### 해결
+
+- TypeHandler 정의 (BaseTypeHanlder를 상속받아 구현체 정의) → **변수에 제대로 담겨짐(해결)**
+- jackson-datatype-jsr310 의존성 추가 후 아래와 같이 코드 정의 → **json 형태로 API 통신 이루어짐(해결)**
+
+```java
+@JsonSerialize(using = LocalDateTimeSerializer.class)
+@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMddHHmm", timezone = "Asia/Seoul")
+private LocalDateTime anncStartDt;
+```
+
+### **하지만 LocalDateTime 타입으로 정의된 모든 변수에 위와 같이 정의하는 것이 비효율적**
+
+- Spring은 application/json 형태로 반환하기 위해 MessageConverter 중 `MappingJackson2HttpMessageConverter` 를 사용, 이를 재정의
+    - `objectMapper`의 **`Jackson2ObjectMapperFactoryBean`** 에 LocalDateTimeSerializer를 추가.
+    - `MappingJackson2HttpMessageConverter` 가 재정의된 `objectMapper`를 사용하도록 메서드 주입
