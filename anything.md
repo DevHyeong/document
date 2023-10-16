@@ -89,5 +89,39 @@ private LocalDateTime anncStartDt;
 
 
 ## 100만개 이상의 더미 데이터 만들기(Feat. EasyRandom)
+- 예를 들어 아래와 같은 엔티티의 데이터를 100만개 만들어보자.
+```java
+@Entity
+@Table(name = "orders")
+@Getter
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Embedded
+    private Orderer orderer;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+    private int totalAmount;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private List<OrderProduct> orderProducts = new ArrayList<>();
+    private LocalDateTime createdAt;
+}
+```
+
+
+
+
+
+
+
+
+https://github.com/j-easy/easy-random
+
+
+
+
 
 
