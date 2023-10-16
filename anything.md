@@ -85,3 +85,9 @@ private LocalDateTime anncStartDt;
 - Spring은 application/json 형태로 반환하기 위해 MessageConverter 중 `MappingJackson2HttpMessageConverter` 를 사용, 이를 재정의
     - `objectMapper`의 **`Jackson2ObjectMapperFactoryBean`** 에 LocalDateTimeSerializer를 추가.
     - `MappingJackson2HttpMessageConverter` 가 재정의된 `objectMapper`를 사용하도록 메서드 주입
+
+
+
+## 100만개 이상의 더미 데이터 만들기(Feat. EasyRandom)
+
+
