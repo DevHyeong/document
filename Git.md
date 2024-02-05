@@ -1,6 +1,9 @@
 # Git
 
 
+## git 정보 참고 사이트
+https://www.lesstif.com/gitbook/
+
 ## git user 설정
 ```
 git config --global user.name "jo"
