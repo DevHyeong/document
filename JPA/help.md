@@ -10,6 +10,9 @@ JPA 데이터 타입은 엔티티 타입과 값 타입으로 분류할 수 있�
 - 임베디드 타입(복합 값 타입)
 - 값 타입 컬렉션: 값 타입을 여러 개 저장하고자 할때 사용하며, 자바의 컬렉션을 사용한다.
 
+값 타입의 생명주기는 엔티티와 같은 생명주기를 따른다. 그렇기 때문에 컬렉션에 단순히 값을 추가하거나 삭제하기만 하면 데이터베이스에 반영된다. (일대다 관계에서 cascade = ALL, orphanRemoval = true 설정과 동일)
+
+데이터 수명주기 동일시 값 타입 사용? 
 
 ### 예시
 Order.java
@@ -52,3 +55,7 @@ public class OrderLineItems {
 ### 값 타입 컬렉션의 대안
 - 값 타입 컬렉션 대신 일대다 관계를 고려
 - 
+
+### 참고
+- https://peppydays.medium.com/jpa-%EC%95%84%EB%91%A5%EB%B0%94%EB%91%A5-elementcollection-%EA%B3%BC-%EC%A4%91%EC%B2%A9%EB%90%9C-embedded-%EA%B7%B8%EB%A6%AC%EA%B3%A0-accesstype-%EC%9D%B4%EC%8A%88-239a86b4d0ca
+
