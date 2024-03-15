@@ -59,7 +59,12 @@
      - 액터는 커맨드를 발생시키는 주체(사람, 시스템 등)를 말한다.
   5) Aggregate 정의
      - 결합물을 의미
-     - 어떤 도메인 객체를 중심으로 하나의 
-
-
+     - 어떤 도메인 객체를 중심으로 하나의 트랜잭션(ACID)에 묶여 변화되어야 할 객체의 묶을 도출한다.
+  6) Bounded Context 도출
+     - Bounded Context는 동일한 문맥으로 효율적으로 업무 용어를 사용할 수 있는 객체 범위를 뜻한다.
+     - 하나의 Bounded Context는 하나 이상의 어그리게잇을 원소로 구성될 수 있다.
+  7) Context 매핑
+     - Bounded Context간 정보 참조 릴레이션 설정하는 작업을 말한다.
+     - 컨텍스트간 매핑 정보만 보더라도 전체 도메인 서비스의 참조 토폴로지를 한 눈에 파악 가능하다.
+       
 - https://www.msaschool.io/operation/design/design-three/
