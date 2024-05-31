@@ -1,6 +1,6 @@
 # postgreSQL 쿼리 모음
 
-### 다중 merge 구조 (MyBatis)
+### 다중 merge (MyBatis)
 ```sql
 <insert id="save" parameterType="java.util.List">
     WITH UPSERT AS (
