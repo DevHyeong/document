@@ -1,5 +1,6 @@
 
 // spring cloud 적용법
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 val springCloudVersion = "2023.0.1"
 
