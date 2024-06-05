@@ -1,4 +1,11 @@
 
+## Plugin
+- Gradle Task의 집합
+- Gradle Task는 어플리케이션 빌드부터 테스트까지 다양한 작업을 수행하는 작업 단위를 뜻한다.
+- plugin들을 적용시키면 수많은 gradle task들이 gradle 파일로 들어온다. (gradle tasks -all은 사용할 수 있는 task 목록을 출력시킨다)
+- https://kotlinworld.com/323
+
+
 ## api vs implementation
 
 
