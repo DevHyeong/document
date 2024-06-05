@@ -10,3 +10,7 @@
 - annotation Processor가 어노테이션을 기반으로 실제 코드를 검사, 수정, 생성하게 됨
 - 기본적으로 포함되어 있는 어노테이션이 아니면 annotationProcessor를 통해 추가해야 한다.
 - https://roadj.tistory.com/9
+
+
+
+https://tech.socarcorp.kr/dev/2024/02/12/legacy-gradle-build-script.html
