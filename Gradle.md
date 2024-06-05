@@ -5,6 +5,12 @@
 - plugin들을 적용시키면 수많은 gradle task들이 gradle 파일로 들어온다. (gradle tasks -all은 사용할 수 있는 task 목록을 출력시킨다)
 - https://kotlinworld.com/323
 
+## Gradle 동작 순서
+- 3단계: Initialization -> Configuration -> Execution 
+- Initialization: settings.gradle.kts 확인후 build.gradle.kts 확인
+- Configuration: 보통 라이브러리를 가져오는 작업이나 프로젝트를 Configure하는 작업들이 이 단계에서 수행된다.
+- Execution: Kotlin이나 Java 파일을 바이드 코드로 변환하는 작업(Compile), Annotation Processing을 통한 Code gen 작업 등이 이 단계에서 수행된다.
+- https://kotlinworld.com/318?category=936944
 
 ## api vs implementation
 
