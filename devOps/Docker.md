@@ -42,10 +42,14 @@ CMD  ["echo", "hello"]
 ```
 
 
+## Health check
+
+
+
 
 ## 참고
 - 
-
+- https://jaeseo0519.tistory.com/264
 
 How to dockerize Spring Boot + React apps
 - https://luizcostatech.medium.com/how-to-dockerize-spring-boot-react-apps-1a4aea1acc44
