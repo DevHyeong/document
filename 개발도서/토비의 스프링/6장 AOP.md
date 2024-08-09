@@ -90,4 +90,54 @@ public void upgradeLevels() {
 - Collections의 unmodifiableCollection()을 통해 만들어지는 오브젝트가 전형적인 접근권한 제어용 프록시
 - 프록시 패턴은 타깃의 기능 자체에는 관여하지 않으면서 접근하는 방법을 제어해주는 프록시를 이용하는 것이다.
 
+### 다이내믹 프록시
+- 다이내믹 프록시는 리플렉션 기능을 이용해서 프록시를 만들어준다. 리플렉션은 자바의 코드 자체를 추상화해서 접근하도록 만든 것이다.
+```java
+public interface InvocationHandler {
+    Object invoke(Object proxy, Method method, Object[] args)
+}
+
+```
+
+```java 
+Hello proxiedHello = (Hello) Proxy.newProxyInstance(
+    getClass().getClassLoader(),
+    new Class[] (Hello.class),
+    new UppercaseHandler(new HelloTarget())
+    );
+
+```
+- 다이내믹 프록시로부터 요청을 전달받으려면 InvocationHandler를 구현해야 한다. 다이내믹 프록시가 클라이언트로부터 받는 모든 요청은 invoke() 메소드로 전달된다. 다이내믹 프록시를 통해 요청이 전달되면 리플렉션 API를 이용해 타깃 오브젝트의 메소드를 호출한다.
+
+### 다이내믹 프록시를 위한 팩토리 빈
+- 스프링은 클래스 정보를 가지고 디폴트 생성자를 통해 오브젝트를 만드는 방법 외에도 빈을 만들 수 있는 여러 가지 방법을 제공한다. 대표적으로 팩토리 빈을 이용하여 빈을 생성하는 것이다.
+- 팩토리 빈이란 스프링을 대신해서 오브젝트의 생성로직을 담당하도록 만들어진 특별한 빈을 말한다.
+- 팩토리 빈을 만드는 방법에는 여러 가지가 있는데 가장 간단한 방법은 FactoryBean 인터페이스를 구현하는 것이다.
+- FactoryBean 인터페이스를 구현한 클래스를 빈으로 등록하면 팩토리 빈으로 동작한다.
+- 참고로 스프링은 private 생성자를 가진 클래스도 빈으로 등록해주면 리플렉션을 이용해 오브젝트를 만들어준다. 리플렉션은 private으로 선언된 접근 규약을 위반할 수 있는 강력한 기능이 있기 때문이다.
+- Proxy의 newProxyInstance() 메소드를 통해서만 생성이 가능한 다이내믹 프록시 오브젝트는 일반적인 방법으로는 스프링의 빈으로 등록할 수 없다. 대신 팩토리 빈을 사용하면 다이내믹 프록시 오브젝트를 스프링의 빈으로 만들어줄 수 있다.
+#### 한계점
+- 새로운 부가기능을 추가할 때마다 프록시와 프록시 팩토리 빈을 추가해줘야 한다.
+
+## 6.4 스프링의 프록시 팩토리 빈
+### ProxyFactoryBean
+- 스프링의 ProxyFactoryBean은 프록시를 생성해서 빈 오브젝트로 등록하게 해주는 팩토리 빈이다. ProxyFactoryBean이 생성하는 프록시에서 사용할 부가기능은 MethodInterceptor 인터페이스를 구현해서 만든다.
+- 여러 프록시가 공유해서 사용할 수 있다.
+- MethodInterceptor의 invoke() 메소드는 ProxyFactoryBean으로부터 타깃 오브젝트에 대한 정보까지도 함께 제공받는다. 그 차이 덕분에 타깃 오브젝트에 상관없이 독립적으로 만들어질 수 있다.
+```java
+class UppercaseAdvice implements MethodInterceptor {
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        String ret = (String)invocation.proceed();
+	return ret.toUpperCase();
+    }
+}
+```
+- 다이내믹 프록시와 달리 ProxyFactoryBean 방식은 두 가지 확장 기능인 부가기능(Advice)와 메소드 선정 알고리즘(Pointcut)을 활용하는 유연한 구조를 제공한다.
+- 어드바이스와 포인트컷은 모두 프록시에 DI로 주입돼서 사용된다.
+- 두 가지 모두 여러 프록시에서 공유가 가능하도록 만들어지기 때문에 스프링의 싱글톤 빈으로 등록이 가능하다.
+- 프록시는 
+
+
+
+
 
