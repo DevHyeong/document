@@ -135,9 +135,63 @@ class UppercaseAdvice implements MethodInterceptor {
 - 다이내믹 프록시와 달리 ProxyFactoryBean 방식은 두 가지 확장 기능인 부가기능(Advice)와 메소드 선정 알고리즘(Pointcut)을 활용하는 유연한 구조를 제공한다.
 - 어드바이스와 포인트컷은 모두 프록시에 DI로 주입돼서 사용된다.
 - 두 가지 모두 여러 프록시에서 공유가 가능하도록 만들어지기 때문에 스프링의 싱글톤 빈으로 등록이 가능하다.
-- 프록시는 
+
+#### proxyFactoryBean 동작원리
+1. 프록시는 클라이언트로부터 요청을 받으면 먼저 포인트컷에게 부가기능을 부여할 메소드인지 확인해달라고 요청한다
+2. 프록시는 포인트컷으로부터 부가기능을 적용할 대상 메소드인지 확인받으면 MethodInteceptor 타입의 어드바이스를 호출한다.
 
 
+```java
+@Test
+public void pointcutAdvisor(){
+    ProxyFactoryBean pfBean = new ProxyFactoryBean();
+    pfBean.setTarget(new HelloTarget());
+
+    NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
+    pointcut.setMappedName("sayH*");
+
+    pfBean.addAdvisor(new DefaultPointcutAdvisor(pointcut, new UppercaseAdvice()));
+
+    Hello proxiedHello = (Hello) pfBean.getObject();
+
+    assertThat(proxiedHello.sayHello("Toby"), is("HELLO TOBY"));
+    assertThat(proxiedHello.sayHi("Toby"), is("HI TOBY"));
+    assertThat(proxiedHello.sayThankYou("Toby"), is("Thank You Toby"));
+}
+
+```
 
 
+- MethodInterceptor는 타깃에 직접 의존하지 않도록 일종의 템플릿 구조로 설계되어 있다. (템플릭/콜백 구조)
+- 포인트컷을 함께 등록할 때는 어드바이스와 포인트컷을 Advisor 타입으로 묶어서 addAdvisor() 메소드를 호출해야한다. 왜냐하면 ProxyFactoryBean에는 여러 개의 어드바이스와 포인트컷이 추가될 수 있기 때문이다. 포인트컷과 어드바이스를 따로 등록하면 어떤 어드바이스에 대해 어떤 포인트컷을 적용할지 애매해지기 때문이다.
+- 토비의 스프링에서는 어드바이스, 포인트컷, 어드바이스, ProxyFactoryBean을 스프링 빈 설정하여 다이내믹 프록시 코드를 개선한다.
+- 이렇게 설정된 스프링 빈은 다양한 서비스 클래스 등 재사용이 가능하다. (ProxyFactoryBean은 타깃의 정보를 하나만 담을수있기에 여러개의 ProxyFactoryBean을 등록하여 사용해야 한다.)
+  
+## 6.5 스프링 AOP
+- 지금까지 해왔던 작업의 목표는 비즈니스 로직에 반복적으로 등장해야만 했던 트랜잭션 코드를 깔끔하고 효과적으로 분리해내는 것이다.
 
+### 빈 후처리기를 이용한 자동 프록시 생성기 DefaultAdvisorAutoProxyCreator
+- 스프링은 컨테이너로서 제공하는 기능 중에서 변하지 않는 핵심적인 부분 외에는 대부분 확장할 수 있도록 확장 포인트를 제공해준다.
+- 그 중에서 관심을 가질 만한 확장 포인트는 바로 BeanPostProcessor 인터페이스를 구현해서 만드는 빈 후처리기다.
+- 스프링은 빈 후처리기가 빈으로 등록되어 있으면 빈 오브젝트가 생성될 때마다 빈 후처리기에 보내서 후처리 작업을 요청한다. 이를 잘 이용하면 스프링이 생성하는 빈 오브젝트의 일부를 프록시로 포장하고 프록시를 빈으로 대신 등록할 수도 있다. 이것이 자동 프록시 생성 빈 후처리기다.
+
+### 빈 후처리기를 이용한 자동 프록시 생성 방법
+1. DefaultAdvisorAutoProxyCreator는 빈으로 등록된 모든 어드바이저 내의 포인트컷을 이용해 전달받은 빈이 프록시 적용 대상인지 확인한다.
+2. 프록시 적용 대상이면 그때는 내장된 프록시 생성기에게 현재 빈에 대한 프록시를 만들게 하고 만들어진 프록시에 어드바이저를 연결해준다.
+3. 빈 후처리기는 프록시가 생성되면 원래 컨테이너가 전달해 준 빈 오브젝트 대신 프록시 오브젝트를 컨테이너에 돌려준다.
+4. 컨테이너는 최종적으로 빈 후처리기가 돌려준 오브젝트를 빈으로 등록하고 사용한다.
+
+### 확장된 포인트컷(Pointcut 인터페이스)
+```java
+public interface Pointcut {
+    ClassFilter getClassFilter(); // 프록시를 적용할 클래스인지 확인해준다.
+    MethodMatcher getMethodMatcher(); // 어드바이스를 적용할 메서드인지 확인해준다.
+}
+```
+- 포인트컷이 클래스 필터까지 동작해서 클래스를 걸러버리면 아무리 프록시를 적용했다고 해도 부가기능은 전혀 제공되지 않는다는 점에 주의해야 한다.
+
+### DefaultAdvisorAutoProxyCreator 적용
+- ProxyFactoryBean 제거와 서비스 빈의 원상복구
+
+### 자동 프록시 생성기를 사용하는 테스트
+- 자동 프록시 생성기는 스프링 컨테이너에 종속적인 기법을 사용했기 때문에 예외상황을 위한 ㅌ
