@@ -65,7 +65,32 @@
 
 ### Spring Boot JPA, h2 테스트를 위한 설정(yml)
 ```yaml
+spring:
+  datasource:
+    url: jdbc:h2:mem:devHyeong;MODE=MySQL;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      # schema-locations: classpath*:h2/schema.sql
+      data-locations: classpath*:h2/data.sql
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    defer-datasource-initialization: true # 데이터 초기화
+    database-platform: org.hibernate.dialect.H2Dialect
 
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
 
 ```
 
