@@ -9,3 +9,4 @@
 - [채널톡](https://channel.io/ko/blog/tag/techv)
 - [올리브영](https://oliveyoung.tech/blog)
 - [토스 기술 블로그](https://toss.tech)
+- [LG CNS](https://www.lgcns.com/blog/cns-tech)
